@@ -8,6 +8,10 @@ public final class LiquidationProduct {
         product = new Product(name, price);
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
     public String label() {
         return product.label();
     }

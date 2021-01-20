@@ -1,17 +1,16 @@
 package ru.job4j.oop;
 
 public class Shop {
-    private  LiquidationProduct lProduct;
+    private static LiquidationProduct lProduct;
 
-    /* Нужно ли здесь так объявлят.
-    public LiquidationProduct getlProduct() {
-        return lProduct;
-    }*/
+    public Shop(LiquidationProduct lProduct) {
+        this.lProduct = lProduct;
+    }
 
     public static Product of(String name, int price) {
         lProduct = new LiquidationProduct(name, price);
         if ("Oil".equals(name)) {
-            return lProduct;
+            return lProduct.getProduct();
         }
         return new Product(name, price);
     }
