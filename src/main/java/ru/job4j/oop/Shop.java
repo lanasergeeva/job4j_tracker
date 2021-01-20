@@ -3,10 +3,6 @@ package ru.job4j.oop;
 public class Shop {
     private static LiquidationProduct lProduct;
 
-    public Shop(LiquidationProduct lProduct) {
-        this.lProduct = lProduct;
-    }
-
     public static Product of(String name, int price) {
         lProduct = new LiquidationProduct(name, price);
         if ("Oil".equals(name)) {
