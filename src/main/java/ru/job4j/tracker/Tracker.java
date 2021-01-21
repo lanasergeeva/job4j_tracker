@@ -32,29 +32,41 @@ public class Tracker {
         return Arrays.copyOf(itemsTwo, temp);
     }
 
-        public Item[] findAll() {
-            return Arrays.copyOf(items, size);
-        }
-
-        private int indexOf(int id) {
-            int rsl = -1;
-            for (int index = 0; index < size; index++) {
-                if (items[index].getId() == id) {
-                    rsl = index;
-                    break;
-                }
-            }
-            return rsl;
-        }
-
-        public boolean replace(int id, Item item) {
-            int index = indexOf(id);
-            boolean rsl = false;
-            if (index != -1) {
-                item.setId(items[index].getId());
-                items[index] = item;
-                rsl = true;
-            }
-            return rsl;
-        }
+    public Item[] findAll() {
+        return Arrays.copyOf(items, size);
     }
+
+    private int indexOf(int id) {
+        int rsl = -1;
+        for (int index = 0; index < size; index++) {
+            if (items[index].getId() == id) {
+                rsl = index;
+                break;
+            }
+        }
+        return rsl;
+    }
+
+    public boolean replace(int id, Item item) {
+        int index = indexOf(id);
+        boolean rsl = false;
+        if (index != -1) {
+            item.setId(id);
+            items[index] = item;
+            rsl = true;
+        }
+        return rsl;
+    }
+
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        int temp = size - index;
+        boolean rsl = index != -1;
+        if (rsl) {
+            items[index] = null;
+            System.arraycopy(items, index + 1, items, index, temp);
+            size--;
+        }
+        return rsl;
+    }
+}
