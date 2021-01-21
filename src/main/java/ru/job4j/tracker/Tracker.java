@@ -20,48 +20,41 @@ public class Tracker {
     }
 
     public Item[] findByName(String key) {
-        Item[] itemsTwo = new Item[items.length];
-        int size = 0;
-        for (int i = 0; i < items.length; i++) {
+        Item[] itemsTwo = new Item[size];
+        int temp = 0;
+        for (int i = 0; i < this.size; i++) {
             Item item = items[i];
             if (item.getName().equals(key)) {
-                itemsTwo[size] = item;
-                size++;
+                itemsTwo[temp] = item;
+                temp++;
             }
         }
-        return Arrays.copyOf(itemsTwo, size);
+        return Arrays.copyOf(itemsTwo, temp);
     }
 
-    public Item[] findAll() {
-        Item[] itemsTwo = new Item[items.length];
-        int size = 0;
-        for (int index = 0; index < items.length; index++) {
-            Item item = items[index];
-            if (item != null) {
-                itemsTwo[size] = item;
-                size++;
+        public Item[] findAll() {
+            return Arrays.copyOf(items, size);
+        }
+
+        private int indexOf(int id) {
+            int rsl = -1;
+            for (int index = 0; index < size; index++) {
+                if (items[index].getId() == id) {
+                    rsl = index;
+                    break;
+                }
             }
+            return rsl;
         }
-        return Arrays.copyOf(itemsTwo, size);
-    }
 
-    private int indexOf(int id) {
-        int rsl = -1;
-        for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
-                rsl = index;
-                break;
+        public boolean replace(int id, Item item) {
+            int index = indexOf(id);
+            boolean rsl = false;
+            if (index != -1) {
+                item.setId(items[index].getId());
+                items[index] = item;
+                rsl = true;
             }
+            return rsl;
         }
-        return rsl;
     }
-
-    public boolean replace(int id, Item item) {
-        int index = indexOf(id);
-        boolean rsl = index != -1;
-        if (rsl) {
-            items[index].setName(item.getName());
-        }
-        return rsl;
-    }
-}
