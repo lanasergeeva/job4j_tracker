@@ -31,13 +31,12 @@ public class Tracker {
         int size = 0;
         for (int i = 0; i < items.length; i++) {
             Item item = items[i];
-            if (item.getName() == key) {
+            if (item.getName().equals(key)) {
                 itemsTwo[size] = item;
                 size++;
             }
         }
-        itemsTwo = Arrays.copyOf(itemsTwo, size);
-        return itemsTwo;
+        return Arrays.copyOf(itemsTwo, size);
     }
 
     public Item[] findAll() {
@@ -50,7 +49,6 @@ public class Tracker {
                 size++;
             }
         }
-        itemsTwo = Arrays.copyOf(itemsTwo, size);
-        return itemsTwo;
+        return Arrays.copyOf(itemsTwo, size);
     }
 }
