@@ -24,7 +24,7 @@ public class StartUI {
                 System.out.println("=== Show all items ====");
                 Item[] itemsAll = tracker.findAll();
                 for (Item item : itemsAll) {
-                    System.out.println("ID: " + item.getId() + " Name: " + item.getName());
+                    System.out.println(item);
                 }
             } else if (select == 2) {
                 System.out.println(menu[select]);
@@ -54,7 +54,7 @@ public class StartUI {
                 int idFind = Integer.valueOf(scanner.nextLine());
                 Item itemFind = tracker.findById(idFind);
                 if (itemFind != null) {
-                    System.out.println("Id=" + itemFind.getId() + "Name is " + itemFind.getName());
+                    System.out.println(itemFind);
                 } else {
                     System.out.println("Заявка с таким id не найдена");
                 }
@@ -65,8 +65,7 @@ public class StartUI {
                 Item[] findName = tracker.findByName(nameFind);
                 if (findName.length > 0) {
                     for (Item itemFindName : findName) {
-                        System.out.println("Id=" + itemFindName.getId()
-                                + "Name is " + itemFindName.getName());
+                        System.out.println(itemFindName);
                     }
                 } else {
                     System.out.println("Заявка с таким id не найдена");
