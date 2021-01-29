@@ -19,7 +19,8 @@ public class Matches {
             }
             if (count > 0) {
                 System.out.println("Осталось " + count + " спичек.");
-            } else {
+            }
+        }
                 if (!turn) {
                     System.out.println("Выиграл первый игрок");
                 } else {
@@ -27,5 +28,4 @@ public class Matches {
                 }
             }
         }
-    }
-}
+
