@@ -6,5 +6,6 @@ public class College {
         StudentSecond studentSecond = freshman;
         Object object = freshman;
         Object objectFresh = new Freshman();
+
     }
 }
