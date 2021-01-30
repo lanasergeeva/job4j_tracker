@@ -57,6 +57,11 @@ public class StartUI {
         String nameEnter = input.askStr(" Enter name: ");
         Item itemEdit = new Item(nameEnter);
         itemEdit.setName(nameEnter);
+        if (tracker.replace(idEdit, itemEdit)) {
+            System.out.println("successful");
+        } else {
+            System.out.println("failed");
+        }
     }
 
     public static void deleteItem(Input input, Tracker tracker) {
