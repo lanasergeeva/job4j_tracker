@@ -10,11 +10,12 @@ public class FindByIdAction implements UserAction {
 
     @Override
     public String name() {
-        return "=== Find item by Id ===";
+        return "Find item by Id";
     }
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
+        out.println("=== Find item by Id ===");
         int idFind = Integer.valueOf(input.askStr(" Enter number of id for searching "));
         Item itemFind = tracker.findById(idFind);
         if (itemFind != null) {
