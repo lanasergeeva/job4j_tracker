@@ -17,8 +17,11 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if (user.isValid()) {
-            throw new UserInvalidException("Login must contains more than three symbols. Invalid user");
+        if (user.getUsername().length() < 3) {
+            throw  new UserInvalidException("Login must contains more than three symbols");
+        }
+        if (!user.isValid()) {
+            throw new UserInvalidException("Invalid user");
         }
         return true;
     }
