@@ -30,9 +30,12 @@ public class StartUI {
     }
 
     public static void main(String[] args) {
+        Log4File log = Log4File.getInstance();
+        log.add("add new Item");
+        log.save();
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getTraker();
         UserAction[] actions = {
                 new CreateAction(output), new ShowAllAction(output), new ReplaceAction(output),
                 new DeleteAction(output), new FindByIdAction(output),
