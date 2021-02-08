@@ -9,11 +9,12 @@ import static org.junit.Assert.*;
 
 public class ConvertListTest  {
     @Test
-    public void whenTwoList() {
+    public void whenThreeList() {
         List<int[]> in = new ArrayList<>();
         in.add(new int[] {1});
         in.add(new int[] {2, 3});
-        List<Integer> expect = Arrays.asList(1, 2, 3);
+        in.add(new int[] {5, 7, 8, 9});
+        List<Integer> expect = Arrays.asList(1, 2, 3, 5, 7, 8, 9);
         assertThat(ConvertList.convert(in), is(expect));
     }
 }
