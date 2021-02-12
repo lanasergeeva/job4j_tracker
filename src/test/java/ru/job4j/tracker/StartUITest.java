@@ -1,13 +1,17 @@
 package ru.job4j.tracker;
 
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
+import org.junit.Before;
 
 public class StartUITest {
+
 
     @Test
     public void whenCreateItem() {
