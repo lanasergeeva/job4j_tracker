@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-public final class Tracker {
+public  class Tracker {
 
-    private static Tracker traker = null;
+    //private static Tracker traker = null;
 
     private List<Item> items = new ArrayList<>();
     private int ids = 1;
     private int size = 0;
 
-    private Tracker() {
-    }
+    /*private Tracker() {
+    }*/
 
-    public static Tracker getTraker() {
+    /*public static Tracker getTraker() {
         if (traker == null) {
             traker = new Tracker();
         }
         return traker;
-    }
+    }*/
 
     public Item add(Item item) {
         item.setId(ids++);

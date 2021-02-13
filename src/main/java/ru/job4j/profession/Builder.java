@@ -1,6 +1,4 @@
-package ru.job4j.Profession;
-
-import ru.job4j.Profession.Enginner;
+package ru.job4j.profession;
 
 public class Builder extends Enginner {
 

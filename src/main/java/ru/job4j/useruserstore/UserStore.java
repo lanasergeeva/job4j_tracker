@@ -1,4 +1,4 @@
-package ru.job4j.tracker.UserUserStore;
+package ru.job4j.useruserstore;
 
 public class UserStore {
     public static void main(String[] args) {

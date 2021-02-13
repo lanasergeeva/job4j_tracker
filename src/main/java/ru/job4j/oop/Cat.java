@@ -9,7 +9,7 @@ public class Cat {
         System.out.println("Cat's name is: " + name + " Cat eats: " + food);
     }
 
-    public void giveNick(String nick){
+    public void giveNick(String nick) {
         this.name = nick;
     }
 

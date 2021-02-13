@@ -1,10 +1,11 @@
-package ru.job4j.Profession;
+package ru.job4j.profession;
 
 public class Dentist extends Doctor {
 
-    private  String forces;
+    private String forces;
 
-    Dentist(String name, String surname, String education, int birthday, String healing, String pacient, String forces) {
+    Dentist(String name, String surname, String education, int birthday,
+            String healing, String pacient, String forces) {
         super(name, surname, education, birthday, healing, pacient);
         this.forces = forces;
     }
