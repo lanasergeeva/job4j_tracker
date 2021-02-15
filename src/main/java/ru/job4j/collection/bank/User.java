@@ -1,6 +1,11 @@
-package ru.job4j.collection;
+package ru.job4j.collection.bank;
 import java.util.Objects;
 
+/**
+ * Класс реализует шаблон пользователя, для банковского приложения.
+ * В нем содержатся поля пасспорт и имя, для идентификации пользователя.
+ * А также методы get и set для доступа к полям.
+ */
 public class User {
     private String passport;
     private String username;

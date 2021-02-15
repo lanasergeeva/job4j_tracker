@@ -1,6 +1,11 @@
-package ru.job4j.collection;
+package ru.job4j.collection.bank;
 import java.util.Objects;
 
+/**
+ * Класс реализует шаблон банковского счета, для банковского приложения.
+ *  * В нем содержатся поля реквизиты и сумма баланса, которые характеризуют счет пользователя.
+ *  * А также методы get и set для доступа к полям.
+ */
 public class AccountSecond {
     private String requisite;
     private double balance;
