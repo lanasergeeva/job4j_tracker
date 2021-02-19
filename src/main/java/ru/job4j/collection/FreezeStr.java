@@ -30,6 +30,6 @@ public class FreezeStr {
                 arr.remove(s);
             }
         }
-        return arr.isEmpty() ? true : false;
+        return arr.isEmpty();
     }
 }
