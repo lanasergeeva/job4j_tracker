@@ -3,7 +3,30 @@ package ru.job4j.collection;
 import java.util.*;
 
 public class FreezeStr {
-    /* public static boolean eq(String left, String right) {
+    public static boolean eq(String left, String right) {
+        Map<Character, Integer> check = new HashMap<>();
+        for (int i = 0; i < left.length(); i++) {
+            char key = left.charAt(i);
+            if (check.containsKey(key)) {
+                check.put(key, check.get(key) + 1);
+            }
+                check.putIfAbsent(key, 0);
+            }
+        for (int i = 0; i < right.length(); i++) {
+            char key = right.charAt(i);
+            if (check.containsKey(key) && check.get(key) != 0) {
+                check.put(key, check.get(key) - 1);
+            } else {
+                check.remove(key);
+            }
+        }
+        return check.isEmpty();
+    }
+}
+
+
+
+/* public static boolean eq(String left, String right) {
          List<String> arrayOne = new ArrayList<>();
          List<String> arrayTwo = new ArrayList<>();
          arrayOne.addAll(Arrays.asList(left.split("")));
@@ -12,9 +35,7 @@ public class FreezeStr {
          Collections.sort(arrayTwo);
          return arrayOne.equals(arrayTwo);
      }*/
-    public static boolean eq(String left, String right) {
-        Map<String, Integer> arr = new HashMap<>();
-        List<String> one = Arrays.asList(left.split(""));
+        /*List<String> one = Arrays.asList(left.split(""));
         List<String> two = Arrays.asList(right.split(""));
         int val = 0;
         for (String s : one) {
@@ -32,4 +53,4 @@ public class FreezeStr {
         }
         return arr.isEmpty();
     }
-}
+}*/
