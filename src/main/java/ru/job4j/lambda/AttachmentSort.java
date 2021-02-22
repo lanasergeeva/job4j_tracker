@@ -17,7 +17,7 @@ public class AttachmentSort {
                 return left.getSize() - right.getSize();
             }
         };
-        attachments.sort(comparator);
+        //attachments.sort(comparator);
         System.out.println(attachments);
 
         Comparator name =  new Comparator<Attachment>() {
@@ -26,10 +26,10 @@ public class AttachmentSort {
                 return left.getName().compareTo(right.getName());
             }
         };
-        attachments.sort(name);
+        //attachments.sort(name);
         System.out.println(attachments);
 
-        ArrayList<Integer> list = new ArrayList<Integer>() {
+        ArrayList<Integer> list = new ArrayList<>() {
             @Override
             public boolean add(Integer o) {
                 System.out.println("Add a new element to list: " + o);
