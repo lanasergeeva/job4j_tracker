@@ -15,12 +15,12 @@ public class FI {
 
         Comparator<String> cmpText = (left, right) -> left.compareTo(right);
         Comparator<String> cmpDescSize = (left, right) ->
-                right.length() - left.length();
+                Integer.compare(right.length(), left.length());
 
         Comparator<Attachment> cmpTextA = (left, right) ->
                 left.getName().compareTo(right.getName());
         Comparator<Attachment> cmpDescSizeA = (left, right) ->
-                right.getName().length() - left.getName().length();
+                Integer.compare(right.getName().length(), left.getName().length());
 
     }
 }
