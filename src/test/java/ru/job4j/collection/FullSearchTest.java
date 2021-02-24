@@ -13,12 +13,12 @@ import static org.junit.Assert.*;
 public class FullSearchTest  {
     @Test
     public void extractNumber() {
-        List<TaskSet> tasks = Arrays.asList(
+        List<TaskSet> tasks = List.of(
                 new TaskSet("1", "First desc"),
                 new TaskSet("2", "Second desc"),
                 new TaskSet("1", "First desc")
         );
-        Set<String> expected = new HashSet<>(Arrays.asList("1", "2"));
+        Set<String> expected = new HashSet<String>(Set.of("1", "2"));
         assertThat(FullSearch.extractNumber(tasks), is(expected));
     }
 }
