@@ -9,6 +9,6 @@ public class StudentMap {
         return students.stream()
                 .distinct()
                 .collect(Collectors.toMap(
-                        Student::getSurname, st -> st));
+                        Student::getSurname, st -> st, (st1, st2) -> st1));
     }
 }
