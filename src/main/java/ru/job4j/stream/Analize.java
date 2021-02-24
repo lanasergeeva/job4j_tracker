@@ -1,3 +1,4 @@
+/*
 package ru.job4j.stream;
 
 import java.util.List;
@@ -57,3 +58,4 @@ public class Analize {
         int deleted;
     }
 }
+*/
