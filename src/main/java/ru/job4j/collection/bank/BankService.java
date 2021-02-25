@@ -1,9 +1,6 @@
 package ru.job4j.collection.bank;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Класс описывает работу простейшего приложения для банка. Реализует 5 методов,
@@ -40,9 +37,9 @@ public class BankService {
      */
 
     public void addAccount(String passport, AccountSecond account) {
-        User user = findByPassport(passport);
-        if (user != null) {
-            List<AccountSecond> accountList = users.get(user);
+        Optional<User> user = findByPassport(passport);
+        if (user.isPresent()) {
+            List<AccountSecond> accountList = users.get(user.get());
             if (!accountList.contains(account)) {
                 accountList.add(account);
             }
@@ -55,20 +52,20 @@ public class BankService {
      * @param passport, по которому осуществляем поиск.
      * @return вовзращает найденного  пользователя, либо null, если тот не найден.
      */
-    /*public User findByPassport(String passport) {
-        User rsl = null;
+    /*public Optional<User> findByPassport(String passport) {
+        Optional<User> rsl = Optional.empty();
         for (User us : users.keySet()) {
             if (us.getPassport().equals(passport)) {
-                rsl = us;
+                rsl = Optional.of(us);
                 break;
             }
         }
         return rsl;
     }*/
-    public User findByPassport(String passport) {
-        return users.keySet().stream().filter(u -> u.getPassport().equals(passport))
-                .findFirst()
-                .orElse(null);
+    public Optional<User> findByPassport(String passport) {
+        return users.keySet().stream()
+                .filter(u -> u.getPassport().equals(passport))
+                .findFirst();
     }
 
     /**
@@ -93,16 +90,12 @@ public class BankService {
         }
         return rsl;
     }*/
-    public AccountSecond findByRequisite(String passport, String requisite) {
-        User us = findByPassport(passport);
-        if (us != null) {
-            return users.get(us)
-                    .stream()
-                    .filter(ac -> ac.getRequisite().equals(requisite))
-                    .findFirst()
-                    .orElse(null);
-        }
-        return null;
+    public Optional<AccountSecond> findByRequisite(String passport, String requisite) {
+        Optional<User> us = findByPassport(passport);
+        return us.flatMap(user -> users.get(user)
+                .stream()
+                .filter(ac -> ac.getRequisite().equals(requisite))
+                .findFirst());
     }
 
     /**
@@ -120,23 +113,28 @@ public class BankService {
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         boolean rsl = false;
-        AccountSecond accountSrc = findByRequisite(srcPassport, srcRequisite);
-        AccountSecond accountDest = findByRequisite(destPassport, destRequisite);
-        if (accountSrc != null && accountDest != null && accountSrc.getBalance() >= amount) {
-            accountSrc.setBalance(accountSrc.getBalance() - amount);
-            accountDest.setBalance(accountDest.getBalance() + amount);
+        Optional<AccountSecond> accountSrc = findByRequisite(srcPassport, srcRequisite);
+        Optional<AccountSecond> accountDest = findByRequisite(destPassport, destRequisite);
+        if (accountSrc.isPresent() && accountDest.isPresent()
+                && accountSrc.get().getBalance() >= amount) {
+            accountSrc.get().setBalance(accountSrc.get().getBalance() - amount);
+            accountDest.get().setBalance(accountDest.get().getBalance() + amount);
             rsl = true;
         }
         return rsl;
     }
 
     public static void main(String[] args) {
-        List<AccountSecond> accounts = new ArrayList<>();
+        BankService bank = new BankService();
+        bank.addUser(new User("321", "Petr Arsentev"));
+        Optional<User> opt = bank.findByPassport("321");
+        opt.ifPresent(user -> System.out.println(user.getUsername()));
+        /*List<AccountSecond> accounts = new ArrayList<>();
         String requisite = "3fdsbb9";
         accounts.add(new AccountSecond("3fdsbb9", 140));
         int index = accounts.indexOf(new AccountSecond(requisite, -1));
         AccountSecond find = accounts.get(index);
-        System.out.println(find.getRequisite() + " -> " + find.getBalance());
+        System.out.println(find.getRequisite() + " -> " + find.getBalance());*/
     }
 }
 
