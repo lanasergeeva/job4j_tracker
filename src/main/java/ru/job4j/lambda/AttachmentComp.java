@@ -1,6 +1,5 @@
 package ru.job4j.lambda;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
 public class AttachmentComp implements Comparator {
