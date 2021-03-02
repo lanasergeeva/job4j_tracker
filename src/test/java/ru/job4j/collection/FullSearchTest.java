@@ -15,7 +15,7 @@ public class FullSearchTest  {
                 new TaskSet("2", "Second desc"),
                 new TaskSet("1", "First desc")
         );
-        Set<String> expected = new HashSet<String>(Set.of("1", "2"));
+        Set<String> expected = new HashSet<>(Set.of("1", "2"));
         assertThat(FullSearch.extractNumber(tasks), is(expected));
     }
 }
