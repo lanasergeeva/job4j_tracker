@@ -8,18 +8,15 @@ import java.util.function.Predicate;
 public class EasyStream {
     private List<Integer> list = new ArrayList<>();
 
-    public EasyStream() {
-
+    private EasyStream() {
     }
 
-    public EasyStream(List<Integer> list) {
+    private EasyStream(List<Integer> list) {
         this.list = list;
     }
 
     public static EasyStream of(List<Integer> source) {
-        EasyStream easyStream = new EasyStream();
-        easyStream.list.addAll(source);
-        return easyStream;
+        return new EasyStream(source);
     }
 
     public EasyStream map(Function<Integer, Integer> fun) {
@@ -41,8 +38,7 @@ public class EasyStream {
     }
 
     public List<Integer> collect() {
-        List<Integer> test = new ArrayList<>(list);
-        return test;
+        return new ArrayList<>(list);
     }
 }
      /*public static List<Integer> pi(List<Integer> source, Function<Integer, Integer> fun,
