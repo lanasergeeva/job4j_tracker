@@ -1,10 +1,13 @@
 package ru.job4j.tracker;
 
+import java.io.InputStream;
+import java.sql.DriverManager;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Properties;
 
-public  class Tracker {
+public  class MemTracker implements Store {
 
     //private static Tracker traker = null;
 
@@ -21,6 +24,11 @@ public  class Tracker {
         }
         return traker;
     }*/
+
+    @Override
+    public void init() {
+
+    }
 
     public Item add(Item item) {
         item.setId(ids++);
@@ -76,5 +84,10 @@ public  class Tracker {
             size--;
         }
         return rsl;
+    }
+
+    @Override
+    public void close() throws Exception {
+
     }
 }
