@@ -10,7 +10,8 @@ public class SqlTracker implements Store {
     private Connection cn;
 
     public void init() {
-        try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
+        try (InputStream in = SqlTracker.class.getClassLoader()
+                .getResourceAsStream("./app.properties")) {
             Properties config = new Properties();
             config.load(in);
             Class.forName(config.getProperty("driver-class-name"));
@@ -97,8 +98,9 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findByName(String key) {
         List<Item> itemList = new ArrayList<>();
-        List<Item> itemSearch = new ArrayList<>();
-        try (PreparedStatement statement = cn.prepareStatement("select * from items")) {
+        try (PreparedStatement statement =
+                     cn.prepareStatement("select * from items where name like ?")) {
+            statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     itemList.add(new Item(
@@ -110,35 +112,26 @@ public class SqlTracker implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for(Item item: itemList) {
-            if(item.getName().equals(key)) {
-                itemSearch.add(item);
-                continue;
-            }
-        }
-        return itemSearch;
+        return itemList;
     }
 
     @Override
     public Item findById(int id) {
         List<Item> itemList = new ArrayList<>();
-       Item rsl = new Item();
-        try (PreparedStatement statement = cn.prepareStatement("select * from items")) {
+        Item rsl = new Item();
+        try (PreparedStatement statement =
+                     cn.prepareStatement("select * from items where id = ?")) {
+            statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    itemList.add(new Item(
+                    rsl = new Item(
                             resultSet.getInt("id"),
                             resultSet.getString("name")
-                    ));
+                    );
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        for(Item item: itemList) {
-            if(item.getId() == id) {
-                rsl = item;
-            }
         }
         return rsl;
     }
