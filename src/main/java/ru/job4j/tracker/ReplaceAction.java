@@ -15,11 +15,11 @@ public class ReplaceAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Store tracker) {
-        int idEdit = Integer.valueOf(input.askStr(" Enter id: "));
+        int id = input.askInt("Enter id: ");
         String nameEnter = input.askStr(" Enter name: ");
         Item itemEdit = new Item(nameEnter);
         itemEdit.setName(nameEnter);
-        if (tracker.replace(idEdit, itemEdit)) {
+        if (tracker.replace(id, itemEdit)) {
            out.println("successful");
         } else {
             out.println("failed");
